@@ -651,89 +651,49 @@
                 <div class="portfolio-grid" id="portfolioGrid">
                     <div class="portfolio-item" data-category="sinkolor">
                         <div class="portfolio-image">
-                            <img src="images/image5.jpeg" alt="Création Sinkolor - Manga" loading="lazy">
-                        </div>
-                        <div class="portfolio-overlay">
-                            <h3>Manga</h3>
-                            <p>Style manga traditionnel</p>
-                            <a href="#contact" class="portfolio-link"><i class="fas fa-envelope"></i> Demander infos</a>
+                            <img src="images/image5.jpeg" alt="Création Sinkolor" loading="lazy">
                         </div>
                     </div>
                     
                     <div class="portfolio-item" data-category="sinkolor">
                         <div class="portfolio-image">
-                            <img src="images/image6.jpeg" alt="Création Sinkolor - Pop Culture" loading="lazy">
-                        </div>
-                        <div class="portfolio-overlay">
-                            <h3>Pop Culture</h3>
-                            <p>Inspiration pop culture</p>
-                            <a href="#contact" class="portfolio-link"><i class="fas fa-envelope"></i> Demander infos</a>
+                            <img src="images/image6.jpeg" alt="Création Sinkolor" loading="lazy">
                         </div>
                     </div>
                     
                     <div class="portfolio-item" data-category="sinkolor">
                         <div class="portfolio-image">
-                            <img src="images/image7.jpeg" alt="Création Sinkolor - Anime" loading="lazy">
-                        </div>
-                        <div class="portfolio-overlay">
-                            <h3>Anime</h3>
-                            <p>Style anime coloré</p>
-                            <a href="#contact" class="portfolio-link"><i class="fas fa-envelope"></i> Demander infos</a>
+                            <img src="images/image7.jpeg" alt="Création Sinkolor" loading="lazy">
                         </div>
                     </div>
                     
                     <div class="portfolio-item" data-category="sinkolor">
                         <div class="portfolio-image">
-                            <img src="images/image8.jpeg" alt="Création Sinkolor - Disney" loading="lazy">
-                        </div>
-                        <div class="portfolio-overlay">
-                            <h3>Disney</h3>
-                            <p>Univers Disney</p>
-                            <a href="#contact" class="portfolio-link"><i class="fas fa-envelope"></i> Demander infos</a>
+                            <img src="images/image8.jpeg" alt="Création Sinkolor" loading="lazy">
                         </div>
                     </div>
                     
                     <div class="portfolio-item" data-category="sinkolor">
                         <div class="portfolio-image">
-                            <img src="images/image9.jpeg" alt="Création Sinkolor - Manga" loading="lazy">
-                        </div>
-                        <div class="portfolio-overlay">
-                            <h3>Manga</h3>
-                            <p>Art manga détaillé</p>
-                            <a href="#contact" class="portfolio-link"><i class="fas fa-envelope"></i> Demander infos</a>
+                            <img src="images/image9.jpeg" alt="Création Sinkolor" loading="lazy">
                         </div>
                     </div>
                     
                     <div class="portfolio-item" data-category="sinkolor">
                         <div class="portfolio-image">
-                            <img src="images/image10.jpeg" alt="Création Sinkolor - Pop Culture" loading="lazy">
-                        </div>
-                        <div class="portfolio-overlay">
-                            <h3>Pop Culture</h3>
-                            <p>Référence culturelle</p>
-                            <a href="#contact" class="portfolio-link"><i class="fas fa-envelope"></i> Demander infos</a>
+                            <img src="images/image10.jpeg" alt="Création Sinkolor" loading="lazy">
                         </div>
                     </div>
                     
                     <div class="portfolio-item" data-category="sinkolor">
                         <div class="portfolio-image">
-                            <img src="images/image12.jpeg" alt="Création Sinkolor - Anime" loading="lazy">
-                        </div>
-                        <div class="portfolio-overlay">
-                            <h3>Anime</h3>
-                            <p>Style anime moderne</p>
-                            <a href="#contact" class="portfolio-link"><i class="fas fa-envelope"></i> Demander infos</a>
+                            <img src="images/image12.jpeg" alt="Création Sinkolor" loading="lazy">
                         </div>
                     </div>
                     
                     <div class="portfolio-item" data-category="sinkolor">
                         <div class="portfolio-image">
-                            <img src="images/image13.jpeg" alt="Création Sinkolor - Manga" loading="lazy">
-                        </div>
-                        <div class="portfolio-overlay">
-                            <h3>Manga</h3>
-                            <p>Art manga expressif</p>
-                            <a href="#contact" class="portfolio-link"><i class="fas fa-envelope"></i> Demander infos</a>
+                            <img src="images/image13.jpeg" alt="Création Sinkolor" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -1465,11 +1425,7 @@
             img.style.cursor = 'pointer';
             
             img.addEventListener('click', function() {
-                const portfolioItem = this.closest('.portfolio-item');
-                const title = portfolioItem.querySelector('.portfolio-overlay h3').textContent;
-                const description = portfolioItem.querySelector('.portfolio-overlay p').textContent;
-                
-                openImageModal(this.src, title, description);
+                openImageModal(this.src, 'Création Sinkolor', 'Artiste tatoueur spécialisé dans le manga, Disney et pop culture');
             });
         });
     });
