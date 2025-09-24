@@ -620,9 +620,9 @@
                 const parent = anchor.parentElement;
                 const submenu = parent.querySelector('.nav-submenu');
                 if (submenu) {
-                    // Sur mobile, permettre la navigation vers la page parent
+                    // Sur mobile, ne pas empêcher la navigation du tout
                     if (window.innerWidth <= 768) {
-                        // Ne pas empêcher la navigation, laisser le lien fonctionner normalement
+                        // Laisser la navigation se faire normalement
                         // Fermer le menu mobile après navigation
                         setTimeout(() => {
                             hamburger.classList.remove('active');
@@ -630,6 +630,8 @@
                             hamburger.setAttribute('aria-expanded', 'false');
                             hamburger.setAttribute('aria-label', 'Ouvrir le menu');
                         }, 100);
+                        // Ne pas empêcher l'événement
+                        return;
                     } else {
                         // Sur desktop, empêcher la navigation et gérer le hover
                         e.preventDefault();
