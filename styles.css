@@ -17,6 +17,13 @@ body {
     overflow-x: hidden;
 }
 
+/* Corriger le problème de la navbar qui coupe le contenu sur mobile */
+@media (max-width: 768px) {
+    body {
+        padding-top: 80px !important;
+    }
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;

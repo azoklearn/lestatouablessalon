@@ -60,6 +60,32 @@
         
         /* Responsive pour mobile */
         @media (max-width: 768px) {
+            /* Corriger le problème de la navbar qui coupe le contenu */
+            body {
+                padding-top: 100px !important;
+            }
+            
+            /* S'assurer que le contenu principal n'est pas coupé */
+            main, .hero, .about, .portfolio, .contact {
+                margin-top: 0 !important;
+            }
+            
+            .hero {
+                padding-top: 2rem !important;
+            }
+            
+            .about {
+                padding-top: 2rem !important;
+            }
+            
+            .portfolio {
+                padding-top: 2rem !important;
+            }
+            
+            .contact {
+                padding-top: 2rem !important;
+            }
+            
             .contact-buttons {
                 flex-direction: column;
                 align-items: center;
@@ -568,7 +594,7 @@
         }
     </style>
 </head>
-<body>
+<body style="padding-top: 150px !important;">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container" style="position:relative;">
@@ -582,16 +608,16 @@
             <ul id="menu" class="nav-menu">
                 <li><a href="index.html" class="nav-link">Retour à la page d'accueil</a></li>
                 <li class="active">
-                    <a href="ldermo.html#ldermo-presentation" class="nav-link">LDermo</a>
+                    <a href="ldermo.html" class="nav-link">LDermo</a>
                     <ul class="nav-submenu">
-                        <li><a href="ldermo.html#ldermo-presentation" class="nav-link">Présentation</a></li>
+                        <li><a href="ldermo.html" class="nav-link">Présentation</a></li>
                         <li><a href="ldermo-tarifs.html" class="nav-link">Tarification</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="sinkolor.html#sinkolor-presentation" class="nav-link">Sinkolor</a>
+                    <a href="sinkolor.html" class="nav-link">Sinkolor</a>
                     <ul class="nav-submenu">
-                        <li><a href="sinkolor.html#sinkolor-presentation" class="nav-link">Présentation</a></li>
+                        <li><a href="sinkolor.html" class="nav-link">Présentation</a></li>
                         <li><a href="flash.html" class="nav-link">Flash disponibles</a></li>
                     </ul>
                 </li>
@@ -607,7 +633,7 @@
 
 
     <!-- LDermo Présentation -->
-    <section id="ldermo-presentation" class="about">
+    <section id="ldermo-presentation" class="about" style="padding-top: 4rem !important; margin-top: 0 !important;">
         <div class="container">
             <div class="about-content">
                 <div class="about-image">

@@ -226,6 +226,24 @@
         }
         
         @media (max-width: 768px) {
+            /* Corriger le problème de la navbar qui coupe le contenu */
+            body {
+                padding-top: 100px !important;
+            }
+            
+            /* S'assurer que le contenu principal n'est pas coupé */
+            main, .flash-page-header, .flash-section {
+                margin-top: 0 !important;
+            }
+            
+            .flash-page-header {
+                padding-top: 2rem !important;
+            }
+            
+            .flash-section {
+                padding-top: 2rem !important;
+            }
+            
             .flash-page-header h1 {
                 font-size: 2rem;
             }
@@ -317,6 +335,70 @@
             .nav-menu {
                 overflow: visible !important;
             }
+            
+            .nav-menu li:hover .nav-submenu,
+            .nav-menu li.active .nav-submenu,
+            .nav-menu li.is-open .nav-submenu {
+                display: block !important;
+            }
+        }
+        
+        /* Sous-menu toujours visible pour l'onglet actif */
+        .nav-menu li.active .nav-submenu {
+            display: block !important;
+        }
+        
+        /* Styles pour les sous-menus */
+        .nav-menu li {
+            position: relative;
+        }
+        
+        .nav-submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #2c3e50;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            min-width: 200px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .nav-menu li:hover .nav-submenu {
+            display: block;
+        }
+        
+        .nav-submenu li {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-submenu .nav-link {
+            display: block !important;
+            padding: 12px 20px;
+            color: #ffffff !important;
+            text-decoration: none !important;
+            border-bottom: 1px solid #34495e;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .nav-submenu .nav-link:hover {
+            background-color: #34495e;
+            color: #ffffff !important;
+        }
+        
+        .nav-submenu .nav-link:last-child {
+            border-bottom: none;
         }
         
         /* Lightbox styles optimisés pour mobile */
@@ -409,7 +491,7 @@
         }
     </style>
 </head>
-<body>
+<body style="padding-top: 150px !important;">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container" style="position:relative;">
@@ -421,8 +503,22 @@
             <div class="nav-center">
             </div>
             <ul id="menu" class="nav-menu">
-                <li><a href="index.html" class="nav-link">Retour à la page d'accueil</a></li>
-                <li><a href="sinkolor.html" class="nav-link">Sinkolor</a></li>
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li>
+                    <a href="ldermo.html" class="nav-link">LDermo</a>
+                    <ul class="nav-submenu">
+                        <li><a href="ldermo.html" class="nav-link">Présentation</a></li>
+                        <li><a href="ldermo-tarifs.html" class="nav-link">Tarification</a></li>
+                    </ul>
+                </li>
+                <li class="active">
+                    <a href="sinkolor.html" class="nav-link">Sinkolor</a>
+                    <ul class="nav-submenu">
+                        <li><a href="sinkolor.html" class="nav-link">Présentation</a></li>
+                        <li><a href="flash.html" class="nav-link">Flash disponibles</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="menu">
                 <span class="bar"></span>
@@ -433,7 +529,7 @@
     </nav>
 
     <!-- Flash Page Header -->
-    <section class="flash-page-header">
+    <section class="flash-page-header" style="padding-top: 4rem !important; margin-top: 0 !important;">
         <div class="container">
             <a href="index.html" class="back-button">
                 <i class="fas fa-arrow-left"></i>
@@ -445,7 +541,7 @@
     </section>
 
     <!-- Flash Section -->
-    <section class="flash-section">
+    <section class="flash-section" style="padding-top: 2rem !important; margin-top: 0 !important;">
         <div class="container">
             <div class="flash-controls" id="flashControls">
                 <input type="search" id="flashSearch" class="flash-search" placeholder="Rechercher un flash...">
@@ -958,6 +1054,81 @@
         
         console.log('=== FIN INITIALISATION MENU HAMBURGER ===');
     });
+    </script>
+    
+    <script>
+    // Mobile Navigation Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (hamburger && navMenu) {
+        hamburger.setAttribute('aria-label', 'Ouvrir le menu');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-controls', 'menu');
+
+        // Gestionnaire pour clic et toucher (mobile)
+        function handleHamburgerClick(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const isActive = hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+            hamburger.setAttribute('aria-label', isActive ? 'Fermer le menu' : 'Ouvrir le menu');
+        }
+        
+        // Ajouter les événements pour clic et toucher
+        hamburger.addEventListener('click', handleHamburgerClick);
+        hamburger.addEventListener('touchstart', handleHamburgerClick);
+
+        // Close menu only when clicking on a leaf link (sans sous-menu) ou un lien de sous-menu
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const li = link.parentElement;
+                const hasDirectSubmenu = li && li.querySelector(':scope > .nav-submenu');
+                if (hasDirectSubmenu) {
+                    // Parent avec sous-menu: ne pas fermer ici (le toggle gère l'ouverture)
+                    return;
+                }
+                // Lien de sous-menu ou lien simple: fermer le panneau
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.setAttribute('aria-label', 'Ouvrir le menu');
+            });
+        });
+
+        // Toggle sous-menus dans le panneau hamburger (tous écrans)
+        document.querySelectorAll('.nav-menu > li > a').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                const parent = anchor.parentElement;
+                const submenu = parent.querySelector('.nav-submenu');
+                if (submenu) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Sur mobile, fermer tous les autres sous-menus et ouvrir celui-ci
+                    if (window.innerWidth <= 768) {
+                        document.querySelectorAll('.nav-menu > li').forEach(otherLi => {
+                            if (otherLi !== parent) {
+                                otherLi.classList.remove('is-open');
+                                const otherSubmenu = otherLi.querySelector('.nav-submenu');
+                                if (otherSubmenu) {
+                                    otherSubmenu.style.display = 'none';
+                                }
+                            }
+                        });
+                        
+                        // Ouvrir le sous-menu actuel
+                        parent.classList.add('is-open');
+                        submenu.style.display = 'block';
+                    } else {
+                        // Sur desktop, comportement normal (hover)
+                        parent.classList.toggle('is-open');
+                    }
+                }
+            });
+        });
+    }
     </script>
     
     <script type="module" src="script-firebase.js"></script>

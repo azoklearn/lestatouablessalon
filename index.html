@@ -115,6 +115,32 @@
         
         /* Responsive pour mobile */
         @media (max-width: 768px) {
+            /* Corriger le problème de la navbar qui coupe le contenu */
+            body {
+                padding-top: 100px !important;
+            }
+            
+            /* S'assurer que le contenu principal n'est pas coupé */
+            main, .hero, .artists, .services, .contact {
+                margin-top: 0 !important;
+            }
+            
+            .hero {
+                padding-top: 2rem !important;
+            }
+            
+            .artists {
+                padding-top: 2rem !important;
+            }
+            
+            .services {
+                padding-top: 2rem !important;
+            }
+            
+            .contact {
+                padding-top: 2rem !important;
+            }
+            
             .hero-info {
                 position: relative;
                 left: auto;
@@ -364,7 +390,7 @@
         }
     </style>
 </head>
-<body>
+<body style="padding-top: 80px !important;">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container" style="position:relative;">
@@ -376,18 +402,20 @@
             <div class="nav-center">
             </div>
             <ul id="menu" class="nav-menu">
-                <li><a href="#accueil" class="nav-link">Retour à la page d'accueil</a></li>
+                <li class="active">
+                    <a href="#accueil" class="nav-link">Accueil</a>
+                </li>
                 <li>
-                    <a href="ldermo.html#ldermo-presentation" class="nav-link">LDermo</a>
+                    <a href="ldermo.html" class="nav-link">LDermo</a>
                     <ul class="nav-submenu">
-                        <li><a href="ldermo.html#ldermo-presentation" class="nav-link">Présentation</a></li>
+                        <li><a href="ldermo.html" class="nav-link">Présentation</a></li>
                         <li><a href="ldermo-tarifs.html" class="nav-link">Tarification</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="sinkolor.html#sinkolor-presentation" class="nav-link">Sinkolor</a>
+                    <a href="sinkolor.html" class="nav-link">Sinkolor</a>
                     <ul class="nav-submenu">
-                        <li><a href="sinkolor.html#sinkolor-presentation" class="nav-link">Présentation</a></li>
+                        <li><a href="sinkolor.html" class="nav-link">Présentation</a></li>
                         <li><a href="flash.html" class="nav-link">Flash disponibles</a></li>
                     </ul>
                 </li>
@@ -402,7 +430,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="accueil" class="hero">
+    <section id="accueil" class="hero" style="padding-top: 1rem !important; margin-top: 0 !important;">
         <div class="hero-info">
             <div class="hero-logo-right">
                 <img src="images/logo.png" alt="Les Tatouables - Logo" style="max-width: 150px; height: auto; display: block; margin: 0 auto 20px auto;">
