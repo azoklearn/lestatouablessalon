@@ -1454,26 +1454,20 @@
                 const parent = anchor.parentElement;
                 const submenu = parent.querySelector('.nav-submenu');
                 if (submenu) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    // Sur mobile, fermer tous les autres sous-menus et ouvrir celui-ci
+                    // Sur mobile, permettre la navigation vers la page parent
                     if (window.innerWidth <= 768) {
-                        document.querySelectorAll('.nav-menu > li').forEach(otherLi => {
-                            if (otherLi !== parent) {
-                                otherLi.classList.remove('is-open');
-                                const otherSubmenu = otherLi.querySelector('.nav-submenu');
-                                if (otherSubmenu) {
-                                    otherSubmenu.style.display = 'none';
-                                }
-                            }
-                        });
-                        
-                        // Ouvrir le sous-menu actuel
-                        parent.classList.add('is-open');
-                        submenu.style.display = 'block';
+                        // Ne pas empêcher la navigation, laisser le lien fonctionner normalement
+                        // Fermer le menu mobile après navigation
+                        setTimeout(() => {
+                            hamburger.classList.remove('active');
+                            navMenu.classList.remove('active');
+                            hamburger.setAttribute('aria-expanded', 'false');
+                            hamburger.setAttribute('aria-label', 'Ouvrir le menu');
+                        }, 100);
                     } else {
-                        // Sur desktop, comportement normal (hover)
+                        // Sur desktop, empêcher la navigation et gérer le hover
+                        e.preventDefault();
+                        e.stopPropagation();
                         parent.classList.toggle('is-open');
                     }
                 }

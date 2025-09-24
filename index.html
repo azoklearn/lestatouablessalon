@@ -620,19 +620,22 @@
                 const parent = anchor.parentElement;
                 const submenu = parent.querySelector('.nav-submenu');
                 if (submenu) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    // Fermer tous les autres sous-menus
-                    document.querySelectorAll('.nav-menu > li').forEach(otherLi => {
-                        if (otherLi !== parent) {
-                            otherLi.classList.remove('is-open');
-                        }
-                    });
-                    
-                    // Toggle le sous-menu actuel
-                    parent.classList.toggle('is-open');
-                    console.log('Sous-menu togglé:', parent.classList.contains('is-open'));
+                    // Sur mobile, permettre la navigation vers la page parent
+                    if (window.innerWidth <= 768) {
+                        // Ne pas empêcher la navigation, laisser le lien fonctionner normalement
+                        // Fermer le menu mobile après navigation
+                        setTimeout(() => {
+                            hamburger.classList.remove('active');
+                            navMenu.classList.remove('active');
+                            hamburger.setAttribute('aria-expanded', 'false');
+                            hamburger.setAttribute('aria-label', 'Ouvrir le menu');
+                        }, 100);
+                    } else {
+                        // Sur desktop, empêcher la navigation et gérer le hover
+                        e.preventDefault();
+                        e.stopPropagation();
+                        parent.classList.toggle('is-open');
+                    }
                 }
             });
         });
