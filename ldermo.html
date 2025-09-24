@@ -391,100 +391,123 @@
         .lightbox-close:hover {
             color: #ccc;
         }
-
-        /* Modal de zoom d'image */
-        .image-zoom-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            display: none;
-            align-items: center;
-            justify-content: center;
+        
+        /* Forcer la priorité absolue de la croix de fermeture */
+        #lightbox-close {
+            z-index: 99999 !important;
+            pointer-events: auto !important;
+            cursor: pointer !important;
+            position: absolute !important;
+            top: 20px !important;
+            right: 30px !important;
+            color: white !important;
+            font-size: 40px !important;
+            font-weight: bold !important;
+            background: rgba(0,0,0,0.5) !important;
+            border-radius: 50% !important;
+            width: 50px !important;
+            height: 50px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: all 0.3s ease !important;
         }
-
-        .modal-backdrop {
+        
+        #lightbox-close:hover {
+            color: #ff4757 !important;
+            background: rgba(0,0,0,0.8) !important;
+            transform: scale(1.1) !important;
+        }
+        
+        /* Styles pour les boutons de navigation */
+        .lightbox-nav {
+            position: absolute !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            background: rgba(0, 0, 0, 0.6) !important;
+            color: white !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            width: 50px !important;
+            height: 50px !important;
+            border-radius: 50% !important;
+            font-size: 16px !important;
+            font-weight: normal !important;
+            cursor: pointer !important;
+            z-index: 10003 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: all 0.3s ease !important;
+            opacity: 0.8 !important;
+            visibility: visible !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3) !important;
+            pointer-events: auto !important;
+        }
+        
+        .lightbox-nav:hover {
+            background: rgba(0, 0, 0, 0.8) !important;
+            opacity: 1 !important;
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4) !important;
+        }
+        
+        .lightbox-nav:active {
+            background: rgba(0, 0, 0, 0.9) !important;
+            transform: translateY(-50%) scale(0.98);
+        }
+        
+        .lightbox-prev {
+            left: 20px;
+        }
+        
+        .lightbox-next {
+            right: 20px;
+        }
+        
+        /* S'assurer que les boutons sont visibles par défaut */
+        #lightbox-prev, #lightbox-next {
+            display: flex !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        .lightbox-counter {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            cursor: pointer;
-        }
-
-        .modal-content {
-            position: relative;
-            max-width: 95vw;
-            max-height: 95vh;
-            background: #1a1a1a;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-            animation: modalZoomIn 0.3s ease-out;
-        }
-
-        .modal-content img {
-            width: 100%;
-            height: auto;
-            max-height: 80vh;
-            object-fit: contain;
-            display: block;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7);
             color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 10001;
         }
-
-        .modal-close:hover {
-            background: rgba(0, 0, 0, 0.9);
-        }
-
-        .modal-info {
-            padding: 20px;
-            background: #2d2d2d;
-            color: white;
-        }
-
-        .modal-info h3 {
-            margin: 0 0 8px 0;
-            font-size: 1.3rem;
-            color: #ffffff;
-        }
-
-        .modal-info p {
-            margin: 0;
-            color: #b8b8b8;
-            font-size: 1rem;
-        }
-
-        @keyframes modalZoomIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
+        
+        /* Responsive pour mobile */
+        @media (max-width: 768px) {
+            .lightbox-nav {
+                width: 45px !important;
+                height: 45px !important;
+                font-size: 14px !important;
             }
-            to {
-                opacity: 1;
-                transform: scale(1);
+            
+            .lightbox-prev {
+                left: 15px !important;
+            }
+            
+            .lightbox-next {
+                right: 15px !important;
+            }
+            
+            .lightbox-counter {
+                bottom: 15px !important;
+                padding: 8px 16px !important;
+                font-size: 13px !important;
             }
         }
+
 
         /* Styles pour les images cliquables */
         #portfolioGrid .portfolio-image img {
@@ -714,18 +737,6 @@
         </div>
     </section>
 
-    <!-- Modal de zoom d'image -->
-    <div id="imageZoomModal" class="image-zoom-modal">
-        <div class="modal-backdrop" onclick="closeImageModal()"></div>
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeImageModal()">&times;</button>
-            <img id="zoomedImage" src="" alt="">
-            <div class="modal-info">
-                <h3 id="modalTitle"></h3>
-                <p id="modalDescription"></p>
-            </div>
-        </div>
-    </div>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
@@ -802,9 +813,18 @@
 
     <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
+        <button class="lightbox-close" onclick="closeLightbox()" style="position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.8); color: white; border: none; font-size: 30px; cursor: pointer; z-index: 10005; padding: 10px; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Image précédente" onclick="navigateToImage('prev')">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Image suivante" onclick="navigateToImage('next')">
+            <i class="fas fa-chevron-right"></i>
+        </button>
         <div class="lightbox-content">
             <img id="lightbox-img" src="" alt="">
+        </div>
+        <div class="lightbox-counter" id="lightbox-counter">
+            <span id="current-image">1</span> / <span id="total-images">1</span>
         </div>
     </div>
 
@@ -1601,44 +1621,6 @@
         }
     });
 
-    // Fonctions pour la modal de zoom d'image
-    function openImageModal(src, title, description) {
-        const modal = document.getElementById('imageZoomModal');
-        const img = document.getElementById('zoomedImage');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalDescription = document.getElementById('modalDescription');
-        
-        img.src = src;
-        img.alt = title;
-        modalTitle.textContent = title;
-        modalDescription.textContent = description;
-        
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-    
-    function closeImageModal() {
-        const modal = document.getElementById('imageZoomModal');
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-
-    // Ajouter les gestionnaires de clic sur les images du portfolio
-    document.addEventListener('DOMContentLoaded', function() {
-        const portfolioImages = document.querySelectorAll('#portfolioGrid .portfolio-image img');
-        
-        portfolioImages.forEach(img => {
-            img.style.cursor = 'pointer';
-            
-            img.addEventListener('click', function() {
-                const portfolioItem = this.closest('.portfolio-item');
-                const title = portfolioItem.querySelector('.portfolio-overlay h3').textContent;
-                const description = portfolioItem.querySelector('.portfolio-overlay p').textContent;
-                
-                openImageModal(this.src, title, description);
-            });
-        });
-    });
     </script>
     
     <script>
@@ -1702,6 +1684,186 @@
             }
         });
     });
+    
+    // Variables globales pour la navigation dans la lightbox
+    let currentImageIndex = 0;
+    let allImages = [];
+    let isLightboxOpen = false; // Protection contre l'ouverture multiple
+    let lastClickTime = 0; // Protection contre les clics rapides
+    
+    // Fonctions de lightbox - GLOBALES
+    function openLightbox(src, alt) {
+        // Protection contre les clics rapides (délai de 300ms)
+        const now = Date.now();
+        if (now - lastClickTime < 300) {
+            return;
+        }
+        lastClickTime = now;
+        
+        // Protection contre l'ouverture multiple
+        if (isLightboxOpen) {
+            return;
+        }
+        
+        isLightboxOpen = true;
+        
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        
+        // Récupérer toutes les images du portfolio
+        const portfolioImages = document.querySelectorAll('#portfolioGrid .portfolio-image img');
+        allImages = Array.from(portfolioImages).map(img => ({
+            src: img.src,
+            alt: img.alt
+        }));
+        
+        // Trouver l'index de l'image actuelle
+        currentImageIndex = allImages.findIndex(img => img.src === src);
+        if (currentImageIndex === -1) currentImageIndex = 0;
+        
+        if (lightbox && lightboxImg) {
+            lightboxImg.src = src;
+            lightboxImg.alt = alt;
+            lightbox.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Mettre à jour le compteur
+            updateLightboxCounter();
+            
+            // Afficher/masquer les boutons de navigation
+            updateNavigationButtons();
+        }
+    }
+    
+    function updateLightboxCounter() {
+        const currentSpan = document.getElementById('current-image');
+        const totalSpan = document.getElementById('total-images');
+        
+        if (currentSpan && totalSpan) {
+            currentSpan.textContent = currentImageIndex + 1;
+            totalSpan.textContent = allImages.length;
+        }
+    }
+    
+    function updateNavigationButtons() {
+        const prevBtn = document.getElementById('lightbox-prev');
+        const nextBtn = document.getElementById('lightbox-next');
+        
+        if (prevBtn && nextBtn) {
+            if (allImages.length <= 1) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'flex';
+                nextBtn.style.display = 'flex';
+            }
+        }
+    }
+    
+    function navigateToImage(direction) {
+        if (allImages.length <= 1) return;
+        
+        if (direction === 'prev') {
+            currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : allImages.length - 1;
+        } else if (direction === 'next') {
+            currentImageIndex = currentImageIndex < allImages.length - 1 ? currentImageIndex + 1 : 0;
+        }
+        
+        const lightboxImg = document.getElementById('lightbox-img');
+        if (lightboxImg && allImages[currentImageIndex]) {
+            lightboxImg.src = allImages[currentImageIndex].src;
+            lightboxImg.alt = allImages[currentImageIndex].alt;
+            updateLightboxCounter();
+        }
+    }
+    
+    function closeLightbox() {
+        isLightboxOpen = false; // Réinitialiser le flag
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox) {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+    
+    
+    // Ajouter les gestionnaires de clic sur les images du portfolio
+    document.addEventListener('DOMContentLoaded', function() {
+        const portfolioImages = document.querySelectorAll('#portfolioGrid .portfolio-image img');
+        
+        portfolioImages.forEach(img => {
+            img.style.cursor = 'pointer';
+            
+            img.addEventListener('click', function() {
+                openLightbox(this.src, this.alt);
+            });
+        });
+    });
+    
+    // Navigation au clavier pour la lightbox
+    document.addEventListener('keydown', function(e) {
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox && lightbox.style.display === 'block') {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                navigateToImage('prev');
+            } else if (e.key === 'ArrowRight') {
+                navigateToImage('next');
+            }
+        }
+    });
+    
+    // Event listener direct sur la croix avec délai
+    setTimeout(function() {
+        const closeBtn = document.querySelector('.lightbox-close');
+        if (closeBtn) {
+            console.log('Event listener ajouté à la croix avec délai');
+            closeBtn.addEventListener('click', function(e) {
+                console.log('Clic sur la croix détecté');
+                e.preventDefault();
+                e.stopPropagation();
+                closeLightbox();
+            });
+        } else {
+            console.log('Croix non trouvée');
+        }
+    }, 3000);
+    
+    // Event listener supplémentaire avec délai encore plus long
+    setTimeout(function() {
+        const closeBtn = document.querySelector('.lightbox-close');
+        if (closeBtn) {
+            console.log('Event listener supplémentaire ajouté à la croix');
+            closeBtn.addEventListener('mousedown', function(e) {
+                console.log('Mousedown sur la croix détecté');
+                e.preventDefault();
+                e.stopPropagation();
+                closeLightbox();
+            });
+        }
+    }, 5000);
+    
+    // Event listener global pour la croix
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.classList.contains('lightbox-close')) {
+            console.log('Clic global sur la croix détecté');
+            e.preventDefault();
+            e.stopPropagation();
+            closeLightbox();
+        }
+    });
+    
+    // Event listener global pour mousedown
+    document.addEventListener('mousedown', function(e) {
+        if (e.target && e.target.classList.contains('lightbox-close')) {
+            console.log('Mousedown global sur la croix détecté');
+            e.preventDefault();
+            e.stopPropagation();
+            closeLightbox();
+        }
+    });
+    
     </script>
 </body>
 </html>
