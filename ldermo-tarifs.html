@@ -1134,5 +1134,68 @@
         });
     }
     </script>
+    
+    <script>
+    // Gestion des sous-menus
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuItems = document.querySelectorAll('.nav-menu > li');
+        
+        menuItems.forEach(item => {
+            const submenu = item.querySelector('.nav-submenu');
+            if (submenu) {
+                const mainLink = item.querySelector('a');
+                
+                // Gestion du survol pour desktop
+                item.addEventListener('mouseenter', function() {
+                    if (window.innerWidth > 768) {
+                        submenu.style.display = 'block';
+                    }
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    if (window.innerWidth > 768) {
+                        submenu.style.display = 'none';
+                    }
+                });
+                
+                // Gestion du clic pour mobile
+                mainLink.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        
+                        // Fermer tous les autres sous-menus
+                        menuItems.forEach(otherItem => {
+                            if (otherItem !== item) {
+                                const otherSubmenu = otherItem.querySelector('.nav-submenu');
+                                if (otherSubmenu) {
+                                    otherSubmenu.style.display = 'none';
+                                }
+                            }
+                        });
+                        
+                        // Toggle le sous-menu actuel
+                        if (submenu.style.display === 'none' || submenu.style.display === '') {
+                            submenu.style.display = 'block';
+                        } else {
+                            submenu.style.display = 'none';
+                        }
+                    }
+                });
+            }
+        });
+        
+        // Fermer les sous-menus quand on clique ailleurs
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.nav-menu')) {
+                menuItems.forEach(item => {
+                    const submenu = item.querySelector('.nav-submenu');
+                    if (submenu) {
+                        submenu.style.display = 'none';
+                    }
+                });
+            }
+        });
+    });
+    </script>
 </body>
 </html>
